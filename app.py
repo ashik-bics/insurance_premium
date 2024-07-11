@@ -51,7 +51,7 @@ def preprocess_inputs(df):
     # categorical columns
     cat_cols = ['sex', 'smoker', 'region']
     # feature encoding
-    df = pd.get_dummies(df, columns=cat_cols, drop_first=True)
+    df = pd.get_dummies(df, columns=cat_cols)
 
     # ensure input has the same columns as the training data
     df = df.reindex(columns=columns, fill_value=0)
@@ -65,7 +65,6 @@ def predict_premium(df):
 
 if st.button('Predict'):
     result = predict_premium(data)
-    st.write('---')
     st.success('Your Estimated Medical Expenses Bill is {} USD'.format(np.around(result[0], decimals=2)))
     st.write('---')
 
